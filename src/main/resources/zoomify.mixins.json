@@ -1,18 +1,16 @@
 {
   "required": true,
-  "package": "dev.isxander.zoomify.mixins",
+  "minVersion": "0.8",
+  "package": "dev.isxander.zoomify.mixin",
   "compatibilityLevel": "JAVA_17",
   "injectors": {
     "defaultRequire": 1
   },
+  "mixins": [
+    "GameSettingsMixin",
+    "MinecraftMixin"
+  ],
   "client": [
-    "hooks.MinecraftClientMixin",
-    "spyglass.AbstractClientPlayerEntityMixin",
-    "spyglass.InGameHudMixin",
-    "spyglass.SpyglassItemMixin",
-    "zoom.GameRendererMixin",
-    "zoom.MouseMixin",
-    "zoom.secondary.GameRendererMixin",
-    "zoom.secondary.GuiMixin"
+    "EntityRendererMixin"
   ]
 }

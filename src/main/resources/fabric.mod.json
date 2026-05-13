@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "id": "${mod_id}",
+  "version": "${version}+BTW-${btw_version}",
+  "name": "${name}",
+  "description": "A configurable zoom mod ported to Better Than Wolves.",
+  "authors": [
+    "isXander",
+    "maro"
+  ],
+  "contact": {
+    "homepage": "https://isxander.dev",
+    "sources": "https://github.com/isXander/Zoomify"
+  },
+  "license": "LGPL-3.0-or-later",
+  "icon": "assets/zoomify/zoomify.png",
+  "environment": "client",
+  "entrypoints": {
+    "main": [
+      "dev.isxander.zoomify.ZoomifyMod"
+    ],
+    "btw:addon": [
+      "dev.isxander.zoomify.ZoomifyAddon"
+    ],
+    "modmenu": [
+      "dev.isxander.zoomify.config.ModMenuIntegration"
+    ]
+  },
+  "custom": {
+    "btw:addon_prefix": "ZF"
+  },
+  "mixins": [
+    "zoomify.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.19",
+    "minecraft": "${minecraft_version}",
+    "btw": ">=${btw_version}",
+    "modmenu": ">=10.1.0"
+  }
+}
