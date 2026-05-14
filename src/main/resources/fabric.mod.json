@@ -3,7 +3,7 @@
   "id": "${mod_id}",
   "version": "${version}+BTW-${btw_version}",
   "name": "${name}",
-  "description": "A configurable zoom mod ported to Better Than Wolves.",
+  "description": "A zoom mod with infinite customizability. Ported to BTW.",
   "authors": [
     "isXander",
     "maromalo"
