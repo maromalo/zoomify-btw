@@ -101,7 +101,8 @@ public final class Zoomify {
     }
 
     public static boolean consumeMouseWheel(int mouseDelta) {
-        if (ZoomifySettings.INSTANCE.scrollZoom && zooming && mouseDelta != 0 && !ZoomifySettings.INSTANCE.keybindScrolling) {
+        boolean activelyZooming = zooming || (ZoomifySettings.INSTANCE.zoomKeyBehaviour == ZoomKeyBehaviour.HOLD && GameSettings.isKeyDown(ZOOM_KEY));
+        if (ZoomifySettings.INSTANCE.scrollZoom && activelyZooming && mouseDelta != 0 && !ZoomifySettings.INSTANCE.keybindScrolling) {
             mouseZoom(mouseDelta);
             return true;
         }
