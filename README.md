@@ -1,6 +1,6 @@
 # Zoomify [BTW Port]
 
-  A port of [Zoomify](https://github.com/isXander/Zoomify) for BTW CE 3.1.0.
+  A port of [Zoomify](https://github.com/isXander/Zoomify) 2.16.0, for BTW CE 3.1.0.
 
   ## Features
   Read more about the features of the original mod here:
