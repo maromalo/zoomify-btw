@@ -34,7 +34,7 @@ public final class ZoomifySettings {
     public double secondaryZoomOutTime = 1.0D;
     public boolean secondaryHideHUDOnZoom = true;
 
-    private ZoomifySettings() {
+    ZoomifySettings() {
     }
 
     public void load() {
@@ -100,8 +100,8 @@ public final class ZoomifySettings {
         scrollStepCount = clamp(scrollStepCount, 0, 100);
         zoomPerStep = clamp(zoomPerStep, 100, 1000);
         scrollZoomSmoothness = clamp(scrollZoomSmoothness, 0, 100);
-        relativeSensitivity = clamp(relativeSensitivity, 0, 100);
-        cinematicCamera = clamp(cinematicCamera, 0, 100);
+        relativeSensitivity = clamp(relativeSensitivity, 0, 150);
+        cinematicCamera = clamp(cinematicCamera, 0, 250);
         secondaryZoomAmount = clamp(secondaryZoomAmount, 1, 500);
         secondaryZoomInTime = clamp(secondaryZoomInTime, 0.0D, 60.0D);
         secondaryZoomOutTime = clamp(secondaryZoomOutTime, 0.0D, 60.0D);
@@ -117,5 +117,28 @@ public final class ZoomifySettings {
 
     private static double clamp(double value, double min, double max) {
         return Math.max(min, Math.min(max, value));
+    }
+
+    public void resetDefaults() {
+        copyFrom(new ZoomifySettings());
+    }
+
+    public void applyOptifinePreset() {
+        resetDefaults();
+        zoomInTransition = TransitionType.INSTANT;
+        zoomOutTransition = TransitionType.INSTANT;
+        scrollZoom = false;
+        relativeSensitivity = 0;
+        relativeViewBobbing = false;
+        cinematicCamera = 100;
+    }
+
+    public void applyOkZoomerPreset() {
+        resetDefaults();
+        zoomInTime = 0.25D;
+        zoomOutTime = 0.25D;
+        relativeSensitivity = 50;
+        relativeViewBobbing = false;
+        scrollZoomSmoothness = 25;
     }
 }
