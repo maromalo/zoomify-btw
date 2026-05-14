@@ -6,11 +6,11 @@
   "description": "A configurable zoom mod ported to Better Than Wolves.",
   "authors": [
     "isXander",
-    "maro"
+    "maromalo"
   ],
   "contact": {
-    "homepage": "https://isxander.dev",
-    "sources": "https://github.com/isXander/Zoomify"
+    "homepage": "https://modrinth.com/mod/zoomify-btw",
+    "sources": "https://github.com/maromalo/zoomify-btw"
   },
   "license": "LGPL-3.0-or-later",
   "icon": "assets/zoomify/zoomify.png",
