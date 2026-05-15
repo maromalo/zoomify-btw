@@ -1,7 +1,6 @@
 package dev.isxander.zoomify.mixin;
 
 import dev.isxander.zoomify.Zoomify;
-import net.minecraft.src.InventoryPlayer;
 import net.minecraft.src.Minecraft;
 import org.lwjgl.input.Mouse;
 import org.spongepowered.asm.mixin.Mixin;
@@ -21,15 +20,5 @@ public class MinecraftMixin {
     private int zoomify$consumeScrollZoom() {
         int mouseDelta = Mouse.getEventDWheel();
         return Zoomify.consumeMouseWheel(mouseDelta) ? 0 : mouseDelta;
-    }
-
-    @Redirect(
-            method = "runTick",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/src/InventoryPlayer;changeCurrentItem(I)V")
-    )
-    private void zoomify$blockHotbarScrollWhenZooming(InventoryPlayer inventory, int mouseDelta) {
-        if (!Zoomify.consumeMouseWheel(mouseDelta)) {
-            inventory.changeCurrentItem(mouseDelta);
-        }
     }
 }
