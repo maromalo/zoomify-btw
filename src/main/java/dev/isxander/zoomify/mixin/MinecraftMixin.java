@@ -19,6 +19,6 @@ public class MinecraftMixin {
     @Redirect(method = "runTick", at = @At(value = "INVOKE", target = "Lorg/lwjgl/input/Mouse;getEventDWheel()I", remap = false))
     private int zoomify$consumeScrollZoom() {
         int mouseDelta = Mouse.getEventDWheel();
-        return Zoomify.consumeMouseWheel(mouseDelta) ? 0 : mouseDelta;
+        return Zoomify.consumeMouseWheel((Minecraft) (Object) this, mouseDelta) ? 0 : mouseDelta;
     }
 }

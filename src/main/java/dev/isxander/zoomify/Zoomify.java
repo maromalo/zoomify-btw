@@ -49,24 +49,31 @@ public final class Zoomify {
         }
 
         boolean previousZooming = zooming;
-        if (ZoomifySettings.INSTANCE.zoomKeyBehaviour == ZoomKeyBehaviour.HOLD) {
-            zooming = GameSettings.isKeyDown(ZOOM_KEY);
+
+        if (minecraft.currentScreen != null) {
+            zooming = false;
+            secondaryZooming = false;
+            drainKeyPresses();
         } else {
-            while (ZOOM_KEY.isPressed()) {
-                zooming = !zooming;
+            if (ZoomifySettings.INSTANCE.zoomKeyBehaviour == ZoomKeyBehaviour.HOLD) {
+                zooming = GameSettings.isKeyDown(ZOOM_KEY);
+            } else {
+                while (ZOOM_KEY.isPressed()) {
+                    zooming = !zooming;
+                }
             }
-        }
 
-        while (SECONDARY_ZOOM_KEY.isPressed()) {
-            secondaryZooming = !secondaryZooming;
-        }
-
-        if (ZoomifySettings.INSTANCE.keybindScrolling) {
-            while (SCROLL_ZOOM_IN_KEY.isPressed()) {
-                mouseZoom(1);
+            while (SECONDARY_ZOOM_KEY.isPressed()) {
+                secondaryZooming = !secondaryZooming;
             }
-            while (SCROLL_ZOOM_OUT_KEY.isPressed()) {
-                mouseZoom(-1);
+
+            if (ZoomifySettings.INSTANCE.keybindScrolling) {
+                while (SCROLL_ZOOM_IN_KEY.isPressed()) {
+                    mouseZoom(1);
+                }
+                while (SCROLL_ZOOM_OUT_KEY.isPressed()) {
+                    mouseZoom(-1);
+                }
             }
         }
 
@@ -100,7 +107,11 @@ public final class Zoomify {
         scrollSteps = clamp(scrollSteps, 0, ZoomifySettings.INSTANCE.scrollStepCount);
     }
 
-    public static boolean consumeMouseWheel(int mouseDelta) {
+    public static boolean consumeMouseWheel(Minecraft minecraft, int mouseDelta) {
+        if (minecraft.currentScreen != null) {
+            return false;
+        }
+
         boolean activelyZooming = zooming || (ZoomifySettings.INSTANCE.zoomKeyBehaviour == ZoomKeyBehaviour.HOLD && GameSettings.isKeyDown(ZOOM_KEY));
         if (ZoomifySettings.INSTANCE.scrollZoom && activelyZooming && mouseDelta != 0 && !ZoomifySettings.INSTANCE.keybindScrolling) {
             mouseZoom(mouseDelta);
@@ -160,6 +171,17 @@ public final class Zoomify {
 
     private static double clamp(double value, double min, double max) {
         return Math.max(min, Math.min(max, value));
+    }
+
+    private static void drainKeyPresses() {
+        while (ZOOM_KEY.isPressed()) {
+        }
+        while (SECONDARY_ZOOM_KEY.isPressed()) {
+        }
+        while (SCROLL_ZOOM_IN_KEY.isPressed()) {
+        }
+        while (SCROLL_ZOOM_OUT_KEY.isPressed()) {
+        }
     }
 
     public static double lerp(double delta, double start, double end) {
